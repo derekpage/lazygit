@@ -7,12 +7,9 @@ else
 	message="Commit at $(date)"
 fi
 git add .
-if git commit -m "$message"; then
-	if git push; then
-		echo "Success: $message"
-	else
-		echo "Error, unable to push"
-	fi
-else
+if ! git commit -m "$message"; then
 	echo "Error, unable to commit"
+fi
+if ! git push; then
+	echo "Error, unable to push"
 fi
